@@ -19,7 +19,7 @@ urlpatterns = [
     # path("api/", include(router.urls)),
     # path("test", views.TestView.as_view(), name="test"),
     re_path(r"^upload/(?P<filename>[^/]+)$", FileUploadView.as_view()),
-    path("test", views.test, name="test"),
+    # path("test", views.test, name="test"),
     path("token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
