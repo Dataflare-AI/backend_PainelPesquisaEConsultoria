@@ -3,7 +3,10 @@ from rest_framework import permissions, status, viewsets
 from rest_framework.parsers import FileUploadParser, FormParser, MultiPartParser
 from rest_framework.response import Response
 from rest_framework.views import APIView
+
+from .models import FileUploadAPI
 from .serializers import FileUploadAPISerializer
+
 
 class FileUploadAPIView(APIView):
     parser_classes = [MultiPartParser, FormParser]
