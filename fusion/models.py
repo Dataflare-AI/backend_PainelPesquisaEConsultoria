@@ -7,5 +7,5 @@ class FileUploadAPI(models.Model):
     description = models.CharField(max_length=255, blank=True)
 
     def __str__(self):
-        # return self.uploaded_on.date()
-        return f"{self.file.name} uploaded on {self.uploaded_on.date()}"
+        return self.uploaded_on.date()
+        # return f"{self.file.} uploaded on {self.uploaded_on.date()}"

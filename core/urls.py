@@ -1,7 +1,8 @@
 # from django.contrib import admin
 # from rest_framework.routers import DefaultRouter
 # router = DefaultRouter()
-
+from django.contrib import admin
+from usuario.router import router as usuario_router
 from django.urls import include, path, re_path
 
 from drf_spectacular.views import (
@@ -19,8 +20,9 @@ app_name = "api"
 
 router = router = DefaultRouter()
 urlpatterns = [
-    # path("admin/", admin.site.urls),
+    path("admin/", admin.site.urls),
     path("api/", include(router.urls)),
+    path("api/", include(usuario_router.urls)),
     # path("test", views.TestView.as_view(), name="test"),
     # re_path(r"^upload/(?P<filename>[^/]+)$", FileUploadView.as_view()),
     # path("test", views.test, name="test"),

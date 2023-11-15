@@ -35,6 +35,8 @@ INSTALLED_APPS = [
     "corsheaders",
     "rest_framework",
     "fusion",
+    "usuario",
+    "import_export",
 ]
 
 MIDDLEWARE = [
@@ -116,9 +118,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = "en-us"
-
-TIME_ZONE = "UTC"
+LANGUAGE_CODE = "pt-br"
+TIME_ZONE = "America/Sao_Paulo"
 
 USE_I18N = True
 
@@ -149,3 +150,5 @@ if MODE in ["PRODUCTION", "MIGRATE"]:
 else:
     MY_IP = os.getenv("MY_IP", "127.0.0.1")
     MEDIA_URL = f"http://{MY_IP}:19003/media/"
+
+AUTH_USER_MODEL = "usuario.Usuario"
