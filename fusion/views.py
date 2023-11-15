@@ -1,11 +1,42 @@
+from django.conf import settings
+from django.http import JsonResponse
+from django.shortcuts import render
+
 import pandas as pd
-from rest_framework import permissions, status, viewsets
-from rest_framework.parsers import FileUploadParser, FormParser, MultiPartParser
+from rest_framework import status
+from rest_framework.parsers import FormParser, MultiPartParser
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from .models import FileUploadAPI
+from .models import ExcelFile, FileUploadAPI
 from .serializers import FileUploadAPISerializer
+
+
+def export_data_to_excel(request):
+    objs = FileUploadAPI.objects.all()
+    data = []
+    for obj in objs:
+        data.append(
+            {
+                "file": obj.file,
+                "uploaded_on": obj.uploaded_on,
+                "description": obj.description,
+            }
+        )
+    pd.DataFrame(data).to_excel("output.xlsx")
+    return JsonResponse({"status": 200})
+
+
+def import_data_to_excel(request):
+    if request.method == "POST":
+        file = request.FILES["file"]
+        obj = ExcelFile.objects.create(file=file)
+        path = str(obj.file)
+        print(f"{settings.BASE_DIR}/{path}")
+        df = pd.read_excel(path)
+        for d in df.values:
+            print(d)
+    return render(request, "excel.html")
 
 
 class FileUploadAPIView(APIView):
@@ -19,14 +50,3 @@ class FileUploadAPIView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    # permission_classes = [permissions.AllowAny]
-
-    # def put(self, request, filename, format=None):
-    #     try:
-    #         file_obj = request.data["file"]
-    #         file_content = file_obj.read()
-    #         df = pd.read_excel(file_content, engine="openpyxl")
-    #         return Response({"status": "success", "message": "File uploaded."})
-    #     except Exception as e:
-    #         return Response({"status": "error", "message": str(e)})
