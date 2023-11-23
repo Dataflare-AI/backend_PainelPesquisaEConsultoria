@@ -5,7 +5,7 @@
 groups = ["default", "dev"]
 strategy = ["cross_platform"]
 lock_version = "4.4"
-content_hash = "sha256:7cb6659fc87fcb7d2d99dfaa1436a667bee6939dbbe4a33b754f3f11eb19c89f"
+content_hash = "sha256:361324869ee86e5418cdd3ec761474c0de3343d6b9781995e06bd0e5b1ea1fc9"
 
 [[package]]
 name = "asgiref"

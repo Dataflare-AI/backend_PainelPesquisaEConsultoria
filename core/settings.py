@@ -105,6 +105,10 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 CORS_ALLOW_ALL_ORIGINS = True
 
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",  # Adicione aqui o seu endereço do frontend
+]
+
 SPECTACULAR_SETTINGS = {
     "TITLE": "fusion_API",
     "DESCRIPTION": "API para manipulação de arquivos .xlsx",

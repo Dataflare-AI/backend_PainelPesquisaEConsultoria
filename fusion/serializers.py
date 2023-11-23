@@ -1,12 +1,10 @@
+# serializers.py
 from rest_framework import serializers
 
-from .models import FileUploadAPI
+from .models import ExcelFile
 
 
-class FileUploadAPISerializer(serializers.ModelSerializer):
+class ExcelFileSerializer(serializers.ModelSerializer):
     class Meta:
-        model = FileUploadAPI
-        fields = (
-            "file",
-            "uploaded_on",
-        )
+        model = ExcelFile
+        fields = ("file",)
