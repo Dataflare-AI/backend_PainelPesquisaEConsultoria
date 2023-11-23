@@ -9,7 +9,7 @@ from drf_spectacular.views import (
 from rest_framework.routers import DefaultRouter
 
 from fusion.views import *
-from fusion.views import ExcelImportAPIView, view_excel_content
+from fusion.views import ExcelImportAPIView
 from usuario.router import router as usuario_router
 
 app_name = "api"
@@ -17,8 +17,6 @@ app_name = "api"
 router = router = DefaultRouter()
 urlpatterns = [
     path("api/excel-import/", ExcelImportAPIView.as_view(), name="excel-import"),
-    path("api/excel-view/<int:file_id>/", view_excel_content, name="excel-view"),
-    # path("import_data_to_excel/", import_data_to_excel),
     path("admin/", admin.site.urls),
     path("api/", include(router.urls)),
     path("api/", include(usuario_router.urls)),

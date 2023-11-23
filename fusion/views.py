@@ -44,17 +44,3 @@ class ExcelImportAPIView(APIView):
 
         except Exception as e:
             return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-
-
-def view_excel_content(request, file_id):
-    try:
-        excel_file = ExcelFile.objects.get(id=file_id)
-        path = str(excel_file.file.path)
-        df = pd.read_excel(path)
-
-        # Converter o DataFrame para um formato que pode ser serializado para JSON
-        data = df.to_dict(orient="records")
-
-        return JsonResponse({"status": "success", "data": data})
-    except Exception as e:
-        return JsonResponse({"status": "error", "error": str(e)})
