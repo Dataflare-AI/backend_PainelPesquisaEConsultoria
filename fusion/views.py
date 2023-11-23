@@ -1,10 +1,13 @@
 # views.py
+import os
 from rest_framework.parsers import FormParser, MultiPartParser
 from rest_framework.response import Response
 from rest_framework.views import APIView
-
+from rest_framework import status
+from django.conf import settings
 from .models import ExcelFile
 from .serializers import ExcelFileSerializer
+from urllib.parse import urljoin
 
 
 class ExcelExportAPIView(APIView):
@@ -38,7 +41,15 @@ class ExcelExportAPIView(APIView):
             serializer = ExcelFileSerializer(data=imported_data_list, many=True)
             if serializer.is_valid():
                 serializer.save()
-                return Response({"status": "success", "data": serializer.data}, status=status.HTTP_200_OK)
+
+                # Correção dos URLs
+                base_url = request.build_absolute_uri("/")[:-1]  # Remover a barra no final
+                file_url = obj.file.url
+                full_url = urljoin(base_url, file_url)
+
+                return Response(
+                    {"status": "success", "data": serializer.data, "file_url": full_url}, status=status.HTTP_200_OK
+                )
             else:
                 return Response({"error": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
 
