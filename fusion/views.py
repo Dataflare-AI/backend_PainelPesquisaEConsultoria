@@ -7,7 +7,7 @@ from .models import ExcelFile
 from .serializers import ExcelFileSerializer
 
 
-class ExcelImportAPIView(APIView):
+class ExcelExportAPIView(APIView):
     parser_classes = (MultiPartParser, FormParser)
 
     def get(self, request, *args, **kwargs):
