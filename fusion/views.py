@@ -10,7 +10,7 @@ from .serializers import ExcelFileSerializer
 from urllib.parse import urljoin
 
 
-class ExcelExportAPIView(APIView):
+class ExcelImportAPIView(APIView):
     parser_classes = (MultiPartParser, FormParser)
 
     def get(self, request, *args, **kwargs):
