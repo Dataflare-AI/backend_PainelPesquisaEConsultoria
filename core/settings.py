@@ -93,7 +93,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 CORS_ALLOW_HEADERS = [
-    'content-type',
+    "content-type",
 ]
 
 LANGUAGE_CODE = "pt-br"
@@ -129,10 +129,10 @@ AUTH_USER_MODEL = "usuario.Usuario"
 CORS_ALLOW_CREDENTIALS = True
 
 CORS_ALLOW_METHODS = [
-    'DELETE',
-    'GET',
-    'OPTIONS',
-    'PATCH',
-    'POST',
-    'PUT',
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT",
 ]
