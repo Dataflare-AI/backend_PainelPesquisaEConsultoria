@@ -92,6 +92,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+CORS_ALLOW_HEADERS = [
+    'content-type',
+]
+
 LANGUAGE_CODE = "pt-br"
 TIME_ZONE = "America/Sao_Paulo"
 
@@ -106,9 +110,8 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 CORS_ALLOW_ALL_ORIGINS = True
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",  # Adicione aqui o seu endereço do frontend
+    "http://localhost:5173",  # Substitua isso pelo seu domínio Vue.js
 ]
-
 SPECTACULAR_SETTINGS = {
     "TITLE": "fusion_API",
     "DESCRIPTION": "API para manipulação de arquivos .xlsx",
@@ -122,3 +125,14 @@ else:
     MEDIA_URL = f"http://127.0.0.1:8000:19003/media/"
 
 AUTH_USER_MODEL = "usuario.Usuario"
+
+CORS_ALLOW_CREDENTIALS = True
+
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+]
