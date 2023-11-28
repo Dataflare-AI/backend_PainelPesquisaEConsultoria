@@ -11,7 +11,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 MODE = os.getenv("MODE")
 
 SECRET_KEY = os.getenv("SECRET_KEY")
-DEBUG = os.getenv("DEBUG", "False")
+# DEBUG = os.getenv("DEBUG", "False")
+DEBUG=True
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 ALLOWED_HOSTS = ["*"]
 CSRF_TRUSTED_ORIGINS = ["http://localhost:3000", "http://localhost:8000", "https://*.fl0.io/"]
 
@@ -93,8 +96,16 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 CORS_ALLOW_HEADERS = [
-    "content-type",
-]
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+] 
 
 LANGUAGE_CODE = "pt-br"
 TIME_ZONE = "America/Sao_Paulo"
@@ -110,7 +121,9 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 CORS_ALLOW_ALL_ORIGINS = True
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",  # Substitua isso pelo seu domínio Vue.js
+    "http://localhost:5173",  # Adicione aqui o domínio do seu aplicativo Vue.js
+    "http://127.0.0.1:8000",  # Adicione aqui o endereço do seu servidor Django
+    "http://172.21.194.144:8000",  # Adicione aqui o endereço do seu servidor remoto
 ]
 SPECTACULAR_SETTINGS = {
     "TITLE": "fusion_API",
@@ -118,11 +131,11 @@ SPECTACULAR_SETTINGS = {
     "VERSION": "1.0.0",
 }
 
-if MODE in ["PRODUCTION", "MIGRATE"]:
-    MEDIA_URL = "/media/"
-else:
-    MY_IP = os.getenv("MY_IP", "127.0.0.1")
-    MEDIA_URL = f"http://127.0.0.1:8000:19003/media/"
+# if MODE in ["PRODUCTION", "MIGRATE"]:
+#     MEDIA_URL = "/media/"
+# else:
+#     MY_IP = os.getenv("MY_IP", "127.0.0.1")
+#     MEDIA_URL = f"http://{MY_IP}:8000/media/"  # Corrigir a URL do arquivo de mídia
 
 AUTH_USER_MODEL = "usuario.Usuario"
 
