@@ -19,10 +19,15 @@ dependencies = [
     "django-import-export>=3.3.3",
     "ta-lib>=0.4.28",
     "requests>=2.31.0",
+    "xlrd>=2.0.1",
+    "ipython>=8.18.1",
 ]
 requires-python = ">=3.10"
 readme = "README.md"
 license = { text = "MIT" }
+
+[tool.pdm]
+index-url = "http://pypi.org/simple"
 
 [build-system]
 requires = ["pdm-backend"]
@@ -51,3 +56,18 @@ line-length = 120
 [[tool.pdm.autoexport]]
 filename = "requirements.txt"
 without-hashes = "true"
+
+[[tool.pdm.autoexport]]
+filename = "requirements.txt"
+without-hashes = "true"
+
+
+[[tool.pdm.autoexport]]
+filename = "requirements.txt"
+without-hashes = "true"
+
+
+[[tool.pdm.autoexport]]
+filename = "requirements.txt"
+without-hashes = "true"
+
